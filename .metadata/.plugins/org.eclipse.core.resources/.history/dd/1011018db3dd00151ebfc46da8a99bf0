@@ -1,0 +1,130 @@
+/**
+ * 
+ */
+package edu.towson.cis.cosc442.project2.vendingmachine;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+/**
+ * @author Dan
+ *
+ */
+public class VendingMachineTest{
+	
+	protected VendingMachine vm1;
+	private VendingMachineItem item1;
+	private VendingMachineItem item2;
+	private VendingMachineItem item3;
+	private VendingMachineItem item4;
+	private VendingMachineItem item5;
+	
+	
+	/**
+	 * @throws java.lang.Exception
+	 */
+	@Before
+	public void setUp() throws Exception {
+		item1 = new VendingMachineItem("chips", 3.00);
+		item2 = new VendingMachineItem("candy", 1.00);
+		item3 = new VendingMachineItem("jerky", 5.00);
+		vm1 = new VendingMachine();
+	}
+
+	//---------------------------------------------------
+	@Test
+	public void testAddItem() {
+		try{
+			vm1.addItem(item1, "A");
+		} catch (Exception e){
+			fail("fail");
+		}
+	}
+	
+	@Test
+	public void testAddItemFailWrongCode() {
+		try{
+			vm1.addItem(item1, "B");
+			fail("fail");
+		} catch (Exception e){}
+	}
+	
+	//---------------------------------------------------
+	@Test
+	public void testGetItem() {
+		vm1.addItem(item1, "A");
+		try{
+			vm1.getItem("A");
+		} catch (Exception e){
+			fail("fail");
+		}
+	}
+	//---------------------------------------------------
+	@Test
+	public void testInsertMoney() {
+		vm1.addItem(item1, "A");
+		try{
+			vm1.insertMoney(5);
+		} catch (Exception e){
+			fail("fail");
+		}
+		assertEquals(5, vm1.getBalance(), .001);
+	}
+	//---------------------------------------------------
+	@Test
+	public void testGetBalance() {
+		assertEquals(0, vm1.balance, .001);
+		vm1.addItem(item1, "A");
+		vm1.insertMoney(5.0);
+		assertEquals(5.0, vm1.balance, .001);
+		vm1.makePurchase("A");
+		assertEquals(2, vm1.balance, .001);
+		vm1.returnChange();
+		assertEquals(0, vm1.balance, .001);
+	}
+	//---------------------------------------------------
+	@Test
+	public void testMakePurchase() {
+		vm1.addItem(item1, "A");
+		vm1.insertMoney(5.0);
+		assertTrue(vm1.makePurchase("A"));
+	}
+	
+	@Test
+	public void testMakePurchaseFailBadCode() {
+		vm1.addItem(item1, "A");
+		vm1.insertMoney(5.0);
+		try{
+			vm1.makePurchase("L");
+			fail("fail");
+		} catch (Exception e){}
+	}
+	//---------------------------------------------------
+	@Test
+	public void testReturnChange() {
+		vm1.addItem(item1, "A");
+		vm1.insertMoney(5);
+		vm1.makePurchase("A");
+		try{
+			vm1.returnChange();
+		} catch (Exception e){
+			fail("fail");
+		}
+	}
+	
+	/**
+	 * @throws java.lang.Exception
+	 */
+	@After
+	public void tearDown() throws Exception {
+		item1 = null;
+		item2 = null;
+		item3 = null;
+		//item4 = null;
+		//item5 = null;
+		vm1 = null;
+	}
+}

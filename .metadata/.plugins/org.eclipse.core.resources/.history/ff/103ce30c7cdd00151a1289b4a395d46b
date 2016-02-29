@@ -1,0 +1,84 @@
+/**
+ * 
+ */
+package edu.towson.cis.cosc442.project2.vendingmachine;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+/**
+ * @author Dan
+ *
+ */
+public class VendingMachineTest{
+	
+	private VendingMachine vm1;
+	private VendingMachineItem item1;
+	private VendingMachineItem item2;
+	private VendingMachineItem item3;
+	private VendingMachineItem item4;
+	private VendingMachineItem item5;
+	
+	
+	/**
+	 * @throws java.lang.Exception
+	 */
+	@Before
+	public void setUp() throws Exception {
+		item1 = new VendingMachineItem("A", 3.00);
+		item2 = new VendingMachineItem("B", 1.00);
+		item3 = new VendingMachineItem("C", 5.00);
+		//item4 = new VendingMachineItem("D", -1.00);
+		//item5 = new VendingMachineItem("E", 86753.09);
+		vm1.addItem(item1, "chips")
+	}
+
+	/**
+	 * @throws java.lang.Exception
+	 */
+	@After
+	public void tearDown() throws Exception {
+		item1 = null;
+		item2 = null;
+		item3 = null;
+		//item4 = null;
+		//item5 = null;
+	}
+
+	@Test
+	public void testAddItem() {
+		//assertEquals("A", vm1.addItem(item1, "chips"));
+		//assertEquals("B", vm1.addItem(item2, "candy"));
+		//assertEquals("C", vm1.addItem(item3, "jerky"));
+		//assertEquals("D", vm1.addItem(item4, "old candy"));
+		//assertFail("E", vm1.addItem(item5, "dreams"));
+	}
+	
+	@Test
+	public void testGetItem() {
+		assertEquals(null, vm1.getItem("chips"));
+	}
+	
+	@Test
+	public void testInsertMoney() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	public void testGetBalance() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	public void testMakePurchase() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	public void testReturnChange() {
+		fail("Not yet implemented");
+	}
+}

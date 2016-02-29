@@ -1,0 +1,50 @@
+/**
+ * 
+ */
+package edu.towson.cis.cosc442.project2.vendingmachine;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+/**
+ * @author Dan
+ *
+ */
+public class VendingMachineItemTest{
+
+	private VendingMachineItem item1, item4;
+	
+
+	/**
+	 * @throws java.lang.Exception
+	 */
+	@Before
+	public void setUp() throws Exception {
+		item1 = new VendingMachineItem("A", 3.00);
+		//item4 = new VendingMachineItem("D", -1.00);
+	}
+
+	/**
+	 * @throws java.lang.Exception
+	 */
+	@After
+	public void tearDown() throws Exception {
+		item1 = null;
+		item4 = null;
+	}
+	
+	
+	@Test
+	public void testGetName() {
+		assertEquals("A", item1.getName());
+	}
+	
+	@Test
+	public void testGetPrice() {
+		assertEquals(3.00, item1.getPrice(), .001);
+		assertNotSame(-1.00, item4.getPrice());
+	}
+}

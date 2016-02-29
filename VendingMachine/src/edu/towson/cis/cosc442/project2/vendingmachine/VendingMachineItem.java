@@ -17,13 +17,19 @@ public class VendingMachineItem {
 	/**
 	 * Constructor which fills in the name and price of the item
 	 * Precondition: price argument >= 0
+	 * Precondition: name argument != null
 	 * Postcondition:  The name and price of the item is set to be the values in the arguments
 	 * @param name The name of the item
 	 * @param price The price of the item
 	 * @throws VendingMachineException Thrown if price is less than zero
 	 */
-	public VendingMachineItem( String name, double price ) throws VendingMachineException {
-		this.name = name;
+	public VendingMachineItem(String name, double price) throws VendingMachineException {
+		if(name == null){
+			throw new VendingMachineException();
+		} else {
+			this.name = name;
+		}
+		
 		if( price < 0 ) {
 			throw new VendingMachineException(PRICE_LESS_THAN_ZERO_MESSAGE);
 		} else {

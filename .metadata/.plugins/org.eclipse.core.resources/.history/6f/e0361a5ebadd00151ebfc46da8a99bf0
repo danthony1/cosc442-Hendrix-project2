@@ -1,0 +1,97 @@
+/**
+ * 
+ */
+package edu.towson.cis.cosc442.project2.vendingmachine;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+/**
+ * @author Dan
+ *
+ */
+public class VendingMachineItemTest{
+
+	private VendingMachineItem item1, item2;
+	
+
+	/**
+	 * @throws java.lang.Exception
+	 */
+	@Before
+	public void setUp() throws Exception {
+		item1 = new VendingMachineItem("chips", 3.00);
+		item2 = new VendingMachineItem("candy", 1.00);
+	}
+
+	/**
+	 * @throws java.lang.Exception
+	 */
+	@After
+	public void tearDown() throws Exception {
+		item1 = null;
+		item2 = null;
+	}
+	
+	/**
+	 * False
+	 * Test VendingMachineItem.
+	 */
+	//---------------------------------------------------
+	@Test
+	public void testVendingMachineItemFalseNull() {
+		try{
+			VendingMachineItem item3 = new VendingMachineItem(null, 3.00);
+			fail("fail");
+		} catch (Exception e){}
+	}
+	
+	/**
+	 * Test vending machine item fail negative.
+	 */
+	//---------------------------------------------------
+	@Test
+	public void testVendingMachineItemFailNegative() {
+		try{
+			VendingMachineItem item4 = new VendingMachineItem("old candy", -1.00);
+			fail("fail");
+		} catch (Exception e){}
+	}
+	
+	
+	/**
+	 * Test get name.
+	 */
+	//---------------------------------------------------
+	@Test
+	public void testGetName() {
+		assertEquals("chips", item1.getName());
+		assertEquals("candy", item2.getName());
+	}
+	
+	
+	/**
+	 * Test get price.
+	 */
+	//---------------------------------------------------
+	@Test
+	public void testGetPrice() {
+		assertEquals(3.00, item1.getPrice(), .001);
+		assertEquals(1.00, item2.getPrice(), .001);
+	}
+	
+	/**
+	 * Fail
+	 * Test get price fail.
+	 */
+	@Test
+	public void testGetPriceFail() {
+		try{
+			//assertFailure();
+			//fail("fail");
+		}catch (Exception e){}
+	}
+}

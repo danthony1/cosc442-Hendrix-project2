@@ -117,7 +117,12 @@ public class VendingMachine {
 	 */
 	protected VendingMachineItem getItem(String code) throws VendingMachineException {
 		int slotIndex = getSlotIndex(code);
-		return itemArray[slotIndex];
+		VendingMachineItem item = itemArray[slotIndex];
+		if(item == null) {
+			throw new VendingMachineException(VendingMachine.INVALID_CODE_MESSAGE);
+		}
+		return item;
+		
 	}
 	
 	/**
@@ -130,10 +135,11 @@ public class VendingMachine {
 	public VendingMachineItem removeItem(String code) throws VendingMachineException {
 		int slotIndex = getSlotIndex(code);
 		VendingMachineItem item = itemArray[slotIndex];
-		itemArray[slotIndex] = null;
-		if ( item == null) {
+		//itemArray[slotIndex] = null;
+		if ( item == null || itemArray[slotIndex] == null) {
 			throw new VendingMachineException(SLOT_MESSAGE + code + IS_EMPTY_MESSAGE);
 		}
+		itemArray[slotIndex] = null;
 		return item;
 	}
 
@@ -176,6 +182,8 @@ public class VendingMachine {
 			removeItem(code);
 			this.balance -= item.getPrice();
 			returnCode = true;
+		} else {
+			throw new VendingMachineException(VendingMachine.INVALID_CODE_MESSAGE);
 		}
 		return returnCode;
 	}
